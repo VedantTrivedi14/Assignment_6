@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/uiSignIn"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etName"
+            style="@style/editText"
+            android:autofillHints="true"
+            android:hint="@string/name"
+            android:inputType="text"
+            android:maxLength="20" />
+
+
+        <EditText
+            android:id="@+id/etEmail"
+            style="@style/editText"
+            android:autofillHints="true"
+            android:hint="@string/Email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            style="@style/editText"
+            android:autofillHints="true"
+            android:hint="@string/phone"
+            android:inputType="number"
+            android:maxLength="10"
+            tools:ignore="TextFields" />
+
+
+        <EditText
+            android:id="@+id/etAddress"
+            style="@style/editText"
+            android:autofillHints="true"
+            android:hint="@string/Address"
+            android:inputType="textPostalAddress" />
+
+        <Spinner
+            android:id="@+id/spinnerCountry"
+            style="@style/editText"
+            android:hint="@string/Country"
+            android:inputType="none" />
+
+
+        <EditText
+            android:id="@+id/etDate"
+            style="@style/editText"
+            android:focusable="false"
+            android:inputType="date"
+            android:hint="@string/DOB" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtGender"
+                style="@style/main_text"
+                android:text="@string/gender" />
+
+            <RadioGroup
+                android:id="@+id/rgButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbMale"
+                    style="@style/rbStyle"
+                    android:button="@drawable/ic_male"
+                    android:checked="true"
+                    android:text="@string/male" />
+
+                <RadioButton
+                    android:id="@+id/rbFemale"
+                    style="@style/rbStyle"
+                    android:button="@drawable/ic_female"
+                    android:text="@string/female" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtHobbies"
+            style="@style/main_text"
+            android:text="@string/Hobbies" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkReading"
+                style="@style/checkStyle"
+                android:text="@string/Reading" />
+
+            <CheckBox
+                android:id="@+id/checkChess"
+                style="@style/checkStyle"
+                android:text="@string/Chess" />
+
+            <CheckBox
+                android:id="@+id/checkDrawing"
+                style="@style/checkStyle"
+                android:text="@string/Drawing" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSignIn"
+            style="@style/btnStyle"
+            android:layout_gravity="center"
+            android:text="@string/Sign_In" />
+    </LinearLayout>
+
+
+</ScrollView>

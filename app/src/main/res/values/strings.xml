@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Assignment_6</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="phone">Contact Number</string>
+    <string name="Address">Address</string>
+    <string name="name">Name</string>
+    <string name="Email">Email</string>
+    <string name="DOB">DOB</string>
+    <string name="Country">Country</string>
+    <string name="gender">Gender</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="Hobbies">Hobbies</string>
+    <string name="Reading">Reading</string>
+    <string name="Chess">Chess</string>
+    <string name="Drawing">Drawing</string>
+    <string name="Sign_In">Sign_In</string>
+
+    <string-array name="countryArray">
+        <item >India</item>
+        <item>China</item>
+        <item>America</item>
+        <item>Russia</item>
+        <item >Uk</item>
+        <item>Germany</item>
+    </string-array>
+
+</resources>
