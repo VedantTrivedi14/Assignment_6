@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init_id();
-        setDOB();
+        setDateOfBirth();
         setCountry();
 
         btnSignIn.setOnClickListener(v -> {
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerCountry = findViewById(R.id.spinnerCountry);
     }
 
-    private void setDOB() {
+    private void setDateOfBirth() {
         etDate.setOnClickListener(v -> {
             int date, set_month, set_year;
             GregorianCalendar gc = new GregorianCalendar();
