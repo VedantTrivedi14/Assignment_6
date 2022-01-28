@@ -28,7 +28,7 @@ public class MainActivityTest {
 
     @Test
     public void mainActivityTest() {
-        ActivityScenario activityScenario = ActivityScenario.launch(MainActivity.class);
+        ActivityScenario<MainActivity> activityScenario = ActivityScenario.launch(MainActivity.class);
 
         onView(allOf(withId(R.id.uiSignIn),isDisplayed()));
 
@@ -55,12 +55,12 @@ public class MainActivityTest {
 
         onView(withId(R.id.btnSignIn)).perform(ViewActions.scrollTo(),click()).check(ViewAssertions.matches(isDisplayed()));
 
-        onView(withText("Sign In SuccessFully")).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
+        onView(withText(R.string.Sign_In_SuccessFully)).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
     }
 
     @Test
     public void validateTest(){
-        ActivityScenario activityScenario = ActivityScenario.launch(MainActivity.class);
+        ActivityScenario<MainActivity> activityScenario = ActivityScenario.launch(MainActivity.class);
 
         onView(allOf(withId(R.id.etName))).check(ViewAssertions.matches(not("")));
         onView(allOf(withId(R.id.etEmail))).check(ViewAssertions.matches(not("")));
