@@ -24,6 +24,6 @@ public class ToastMatcher extends TypeSafeMatcher<Root> {
 
     @Override
     public void describeTo(Description description) {
-        description.appendText("sign_in SuccessFully");
+        description.appendText(String.valueOf(R.string.Sign_In_SuccessFully));
     }
 }
