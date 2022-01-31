@@ -6,6 +6,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isNotChecked;
@@ -24,46 +25,55 @@ import androidx.test.espresso.assertion.ViewAssertions;
 
 import org.junit.Test;
 
+
 public class MainActivityTest {
 
     @Test
     public void mainActivityTest() {
-        ActivityScenario<MainActivity> activityScenario = ActivityScenario.launch(MainActivity.class);
+        ActivityScenario.launch(MainActivity.class);
 
-        onView(allOf(withId(R.id.uiSignIn),isDisplayed()));
+        onView(allOf(withId(R.id.uiSignIn), isDisplayed()));
 
-        onView(allOf(withId(R.id.etName),isDisplayed())).perform(typeText("ved"),closeSoftKeyboard());
-        onView(allOf(withId(R.id.etEmail),isDisplayed())).perform(typeText("ved@gmail.com"),closeSoftKeyboard());
-        onView(allOf(withId(R.id.etPhone),isDisplayed())).perform(typeText("9904441108"),closeSoftKeyboard());
-        onView(allOf(withId(R.id.etAddress),isDisplayed())).perform(typeText("bhavnagar"),closeSoftKeyboard());
 
+        onView(allOf(withId(R.id.etName), isDisplayed()));
+        onView(allOf(withId(R.id.etEmail), isDisplayed()));
+        onView(allOf(withId(R.id.etPhone), isDisplayed()));
+        onView(allOf(withId(R.id.etAddress), isDisplayed()));
+        onView(allOf(withId(R.id.spinnerCountry), isDisplayed()));
+        onView(allOf(withId(R.id.etDate), isDisplayed()));
+
+
+        onView(allOf(withId(R.id.etName), isDisplayed())).perform(typeText("ved"), closeSoftKeyboard());
+        onView(allOf(withId(R.id.etEmail), isDisplayed())).perform(typeText("ved@gmail.com"), closeSoftKeyboard());
+        onView(allOf(withId(R.id.etPhone), isDisplayed())).perform(typeText("9904441108"), closeSoftKeyboard());
+        onView(allOf(withId(R.id.etAddress), isDisplayed())).perform(typeText("bhavnagar"), closeSoftKeyboard());
         onView(withId(R.id.spinnerCountry)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("India"))).perform(click());
         onView(withId(R.id.spinnerCountry)).check(matches(withSpinnerText(containsString("India"))));
-
-        onView(allOf(withId(R.id.etDate),isDisplayed())).perform(click());
+        onView(allOf(withId(R.id.etDate), isDisplayed())).perform(click());
         onView(withText("OK")).perform(click());
 
-        onView(allOf(withId(R.id.txtGender),isDisplayed()));
-        onView(withId(R.id.rbMale)).perform(ViewActions.scrollTo(),click()).check(ViewAssertions.matches(isDisplayed()));
-        onView(withId(R.id.rbFemale)).perform(ViewActions.scrollTo(),click()).check(ViewAssertions.matches(isDisplayed()));
+        onView(allOf(withId(R.id.txtGender), isDisplayed()));
+        onView(withId(R.id.rbMale)).perform(ViewActions.scrollTo(), click()).check(ViewAssertions.matches(isDisplayed()));
+        onView(withId(R.id.rbFemale)).perform(ViewActions.scrollTo(), click()).check(ViewAssertions.matches(isDisplayed()));
 
-        onView(allOf(withId(R.id.txtHobbies),isDisplayed()));
-        onView(withId(R.id.checkReading)).perform(ViewActions.scrollTo(),click()).check(ViewAssertions.matches(isDisplayed()));
-        onView(withId(R.id.checkDrawing)).perform(ViewActions.scrollTo(),click()).check(ViewAssertions.matches(isDisplayed()));
-        onView(withId(R.id.checkChess)).perform(ViewActions.scrollTo(),click()).check(ViewAssertions.matches(isDisplayed()));
+        onView(allOf(withId(R.id.txtHobbies), isDisplayed()));
+        onView(withId(R.id.checkReading)).perform(ViewActions.scrollTo(), click()).check(ViewAssertions.matches(isDisplayed()));
+        onView(withId(R.id.checkDrawing)).perform(ViewActions.scrollTo(), click()).check(ViewAssertions.matches(isDisplayed()));
+        onView(withId(R.id.checkChess)).perform(ViewActions.scrollTo(), click()).check(ViewAssertions.matches(isDisplayed()));
 
-        onView(withId(R.id.btnSignIn)).perform(ViewActions.scrollTo(),click()).check(ViewAssertions.matches(isDisplayed()));
-
+        onView(withId(R.id.btnSignIn)).perform(ViewActions.scrollTo(), click()).check(ViewAssertions.matches(isDisplayed()));
         onView(withText(R.string.Sign_In_SuccessFully)).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
+
     }
 
     @Test
-    public void validateTest(){
-        ActivityScenario<MainActivity> activityScenario = ActivityScenario.launch(MainActivity.class);
+    public void validateTest() {
+        ActivityScenario.launch(MainActivity.class);
 
         onView(allOf(withId(R.id.etName))).check(ViewAssertions.matches(not("")));
-        onView(allOf(withId(R.id.etEmail))).check(ViewAssertions.matches(not("")));
+        onView(allOf(withId(R.id.etEmail))).check(ViewAssertions.matches(not(hasErrorText(String.valueOf(R.string.Enter_Email)))));
+        onView(allOf(withId(R.id.etEmail))).check(ViewAssertions.matches(not(hasErrorText(String.valueOf(R.string.invalid_email_address)))));
         onView(allOf(withId(R.id.etPhone))).check(ViewAssertions.matches(not("")));
         onView(allOf(withId(R.id.etAddress))).check(ViewAssertions.matches(not("")));
         onView(allOf(withId(R.id.spinnerCountry))).check(ViewAssertions.matches(not("")));
@@ -75,4 +85,6 @@ public class MainActivityTest {
         onView(allOf(withId(R.id.checkDrawing))).check(ViewAssertions.matches(isNotChecked()));
     }
 
+
 }
+

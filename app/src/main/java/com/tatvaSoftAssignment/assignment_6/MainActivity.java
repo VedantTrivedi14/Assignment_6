@@ -2,7 +2,6 @@ package com.tatvaSoftAssignment.assignment_6;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -32,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
         setCountry();
 
         btnSignIn.setOnClickListener(v -> {
-            if(isValid()){
+            if (isValid()) {
                 Toast.makeText(this, getString(R.string.Sign_In_SuccessFully), Toast.LENGTH_SHORT).show();
             }
         });
 
     }
+
     private void init_id() {
         etName = findViewById(R.id.etName);
         etEmail = findViewById(R.id.etEmail);
@@ -75,28 +75,37 @@ public class MainActivity extends AppCompatActivity {
 
     private Boolean isValid() {
         boolean valid = true;
-
+        String pattern =
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                        + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
         if (etName.getText().toString().length() == 0) {
             Toast.makeText(this, getString(R.string.Enter_Name), Toast.LENGTH_LONG).show();
             valid = false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(etEmail.getText().toString()).matches()) {
-            Toast.makeText(this, getString(R.string.Enter_Email), Toast.LENGTH_LONG).show();
+        } else if (etEmail.getText().toString().isEmpty()) {
+            etEmail.setError(getString(R.string.Enter_Email));
+            Toast.makeText(getApplicationContext(), getString(R.string.Enter_Email), Toast.LENGTH_SHORT).show();
+            valid = false;
+        } else if (!etEmail.getText().toString().matches(pattern)) {
+            etEmail.setError(getString(R.string.invalid_email_address));
+            Toast.makeText(getApplicationContext(), getString(R.string.invalid_email_address), Toast.LENGTH_SHORT).show();
             valid = false;
         } else if (etDate.getText().toString().length() == 0) {
             Toast.makeText(this, getString(R.string.select_date), Toast.LENGTH_LONG).show();
             valid = false;
-        }else if (etAddress.getText().toString().length() == 0) {
+        } else if (etAddress.getText().toString().length() == 0) {
             Toast.makeText(this, getString(R.string.Enter_address), Toast.LENGTH_LONG).show();
             valid = false;
-        }else if (etPhone.getText().toString().length() != 10) {
+        } else if (etPhone.getText().toString().length() != 10) {
             Toast.makeText(this, getString(R.string.Enter_Contact_Number), Toast.LENGTH_LONG).show();
             valid = false;
-        }else if (!checkReading.isChecked() && !checkChess.isChecked() && !checkDrawing.isChecked()) {
+        } else if (!checkReading.isChecked() && !checkChess.isChecked() && !checkDrawing.isChecked()) {
             Toast.makeText(this, getString(R.string.select_at_least_one_hobby), Toast.LENGTH_LONG).show();
             valid = false;
         }
-
-
         return valid;
     }
 }
