@@ -18,8 +18,10 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNot.not;
+import static org.junit.Assert.assertTrue;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.NoMatchingRootException;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.assertion.ViewAssertions;
 
@@ -31,6 +33,7 @@ public class MainActivityTest {
     @Test
     public void mainActivityTest() {
         ActivityScenario.launch(MainActivity.class);
+
 
         onView(allOf(withId(R.id.uiSignIn), isDisplayed()));
 
@@ -63,7 +66,16 @@ public class MainActivityTest {
         onView(withId(R.id.checkChess)).perform(ViewActions.scrollTo(), click()).check(ViewAssertions.matches(isDisplayed()));
 
         onView(withId(R.id.btnSignIn)).perform(ViewActions.scrollTo(), click()).check(ViewAssertions.matches(isDisplayed()));
-        onView(withText(R.string.Sign_In_SuccessFully)).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
+
+//        onView(withText(String.valueOf(R.string.Sign_In_SuccessFully))).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
+        boolean exceptionCaptured = false;
+        try {
+            onView(withText(String.valueOf(R.string.Sign_In_SuccessFully))).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
+        } catch (NoMatchingRootException e) {
+            exceptionCaptured = true;
+        } finally {
+            assertTrue(exceptionCaptured);
+        }
 
     }
 
