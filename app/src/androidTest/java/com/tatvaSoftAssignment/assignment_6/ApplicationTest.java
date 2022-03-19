@@ -21,9 +21,9 @@ import android.view.ViewParent;
 
 import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -52,7 +52,6 @@ public class ApplicationTest {
                         isDisplayed()));
         materialButton.perform(click());
 
-
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.etName),
                         childAtPosition(
@@ -71,7 +70,6 @@ public class ApplicationTest {
                                 1)));
         appCompatEditText2.perform(scrollTo(), replaceText("ved@gmail.com"), closeSoftKeyboard());
 
-
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.etPhone),
                         childAtPosition(
@@ -79,26 +77,16 @@ public class ApplicationTest {
                                         withId(R.id.uiSignIn),
                                         0),
                                 2)));
-        appCompatEditText3.perform(scrollTo(), click());
+        appCompatEditText3.perform(scrollTo(), replaceText("9904441108"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.etPhone),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.uiSignIn),
-                                        0),
-                                2)));
-        appCompatEditText4.perform(scrollTo(), replaceText("9904441108"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText5 = onView(
                 allOf(withId(R.id.etAddress),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.uiSignIn),
                                         0),
                                 3)));
-        appCompatEditText5.perform(scrollTo(), replaceText("bhavnagar"), closeSoftKeyboard());
-
+        appCompatEditText4.perform(scrollTo(), replaceText("bvn"), closeSoftKeyboard());
 
         ViewInteraction appCompatSpinner = onView(
                 allOf(withId(R.id.spinnerCountry),
@@ -109,7 +97,6 @@ public class ApplicationTest {
                                 4)));
         appCompatSpinner.perform(scrollTo(), click());
 
-
         DataInteraction materialTextView = onData(anything())
                 .inAdapterView(childAtPosition(
                         withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
@@ -117,25 +104,23 @@ public class ApplicationTest {
                 .atPosition(0);
         materialTextView.perform(click());
 
-        ViewInteraction materialRadioButton = onView(
-                allOf(withId(R.id.rbFemale), withText("female"),
+        ViewInteraction appCompatEditText5 = onView(
+                allOf(withId(R.id.etDate),
                         childAtPosition(
-                                allOf(withId(R.id.rgButton),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                1)));
-        materialRadioButton.perform(scrollTo(), click());
+                                childAtPosition(
+                                        withId(R.id.uiSignIn),
+                                        0),
+                                5)));
+        appCompatEditText5.perform(scrollTo(), click());
 
-        ViewInteraction materialRadioButton2 = onView(
-                allOf(withId(R.id.rbMale), withText("male"),
+        ViewInteraction materialButton2 = onView(
+                allOf(withId(android.R.id.button1), withText("OK"),
                         childAtPosition(
-                                allOf(withId(R.id.rgButton),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                0)));
-        materialRadioButton2.perform(scrollTo(), click());
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                3)));
+        materialButton2.perform(scrollTo(), click());
 
         ViewInteraction materialCheckBox = onView(
                 allOf(withId(R.id.checkReading), withText("Reading"),
@@ -164,14 +149,34 @@ public class ApplicationTest {
                                 2)));
         materialCheckBox3.perform(scrollTo(), click());
 
-        ViewInteraction materialButton2 = onView(
+        ViewInteraction materialRadioButton = onView(
+                allOf(withId(R.id.rbFemale), withText("female"),
+                        childAtPosition(
+                                allOf(withId(R.id.rgButton),
+                                        childAtPosition(
+                                                withClassName(is("android.widget.LinearLayout")),
+                                                1)),
+                                1)));
+        materialRadioButton.perform(scrollTo(), click());
+
+        ViewInteraction materialRadioButton2 = onView(
+                allOf(withId(R.id.rbMale), withText("male"),
+                        childAtPosition(
+                                allOf(withId(R.id.rgButton),
+                                        childAtPosition(
+                                                withClassName(is("android.widget.LinearLayout")),
+                                                1)),
+                                0)));
+        materialRadioButton2.perform(scrollTo(), click());
+
+        ViewInteraction materialButton3 = onView(
                 allOf(withId(R.id.btnSignIn), withText("Sign_In"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.uiSignIn),
                                         0),
                                 9)));
-        materialButton2.perform(scrollTo(), click());
+        materialButton3.perform(scrollTo(), click());
     }
 
     private static Matcher<View> childAtPosition(

@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/uiSignIn"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/etName"
@@ -17,7 +17,10 @@
             android:autofillHints="true"
             android:hint="@string/name"
             android:inputType="text"
-            android:maxLength="20" />
+            android:maxLength="20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
 
 
         <EditText
@@ -25,7 +28,10 @@
             style="@style/editText"
             android:autofillHints="true"
             android:hint="@string/Email"
-            android:inputType="textEmailAddress" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etName"
+            android:inputType="textEmailAddress"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/etPhone"
@@ -33,8 +39,10 @@
             android:autofillHints="true"
             android:hint="@string/phone"
             android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEmail"
             android:maxLength="10"
-            tools:ignore="TextFields" />
+            tools:ignore="TextFields,TouchTargetSizeCheck" />
 
 
         <EditText
@@ -42,37 +50,48 @@
             style="@style/editText"
             android:autofillHints="true"
             android:hint="@string/Address"
-            android:inputType="textPostalAddress" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etPhone"
+            android:inputType="textPostalAddress"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Spinner
             android:id="@+id/spinnerCountry"
             style="@style/editText"
             android:hint="@string/Country"
-            android:inputType="none" />
+            android:inputType="none"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etAddress"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
 
         <EditText
             android:id="@+id/etDate"
             style="@style/editText"
+            android:autofillHints="true"
             android:focusable="false"
+            android:hint="@string/DOB"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinnerCountry"
             android:inputType="date"
-            android:hint="@string/DOB" />
+            tools:ignore="TouchTargetSizeCheck" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/txtGender"
                 style="@style/main_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etDate"
                 android:text="@string/gender" />
 
             <RadioGroup
                 android:id="@+id/rgButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtGender"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -89,40 +108,48 @@
                     android:text="@string/female" />
             </RadioGroup>
 
-        </LinearLayout>
+
 
         <TextView
             android:id="@+id/txtHobbies"
             style="@style/main_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rgButton"
             android:text="@string/Hobbies" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+
 
             <CheckBox
                 android:id="@+id/checkReading"
                 style="@style/checkStyle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtHobbies"
                 android:text="@string/Reading" />
 
             <CheckBox
                 android:id="@+id/checkChess"
                 style="@style/checkStyle"
+                app:layout_constraintStart_toEndOf="@id/checkReading"
+                app:layout_constraintTop_toBottomOf="@id/txtHobbies"
                 android:text="@string/Chess" />
 
             <CheckBox
                 android:id="@+id/checkDrawing"
                 style="@style/checkStyle"
+                app:layout_constraintStart_toEndOf="@id/checkChess"
+                app:layout_constraintTop_toBottomOf="@id/txtHobbies"
                 android:text="@string/Drawing" />
-        </LinearLayout>
+
 
         <Button
             android:id="@+id/btnSignIn"
             style="@style/btnStyle"
             android:layout_gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkReading"
             android:text="@string/Sign_In" />
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </ScrollView>

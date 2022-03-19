@@ -20,24 +20,32 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertTrue;
 
-import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.NoMatchingRootException;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.assertion.ViewAssertions;
+import androidx.test.espresso.intent.rule.IntentsTestRule;
+import androidx.test.rule.ActivityTestRule;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 
 public class MainActivityTest {
 
+    @Rule
+    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class, true, false) {
+        @Override
+        protected void afterActivityLaunched() {
+            super.afterActivityLaunched();
+        }
+    };
+
+    @Rule
+    public IntentsTestRule<MainActivity> intentsTestRule = new IntentsTestRule<>(MainActivity.class);
+
     @Test
     public void mainActivityTest() {
-        ActivityScenario.launch(MainActivity.class);
-
 
         onView(allOf(withId(R.id.uiSignIn), isDisplayed()));
-
-
         onView(allOf(withId(R.id.etName), isDisplayed()));
         onView(allOf(withId(R.id.etEmail), isDisplayed()));
         onView(allOf(withId(R.id.etPhone), isDisplayed()));
@@ -71,7 +79,7 @@ public class MainActivityTest {
         boolean exceptionCaptured = false;
         try {
             onView(withText(String.valueOf(R.string.Sign_In_SuccessFully))).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
-        } catch (NoMatchingRootException e) {
+        } catch (Exception e) {
             exceptionCaptured = true;
         } finally {
             assertTrue(exceptionCaptured);
@@ -81,7 +89,7 @@ public class MainActivityTest {
 
     @Test
     public void validateTest() {
-        ActivityScenario.launch(MainActivity.class);
+
 
         onView(allOf(withId(R.id.etName))).check(ViewAssertions.matches(not("")));
         onView(allOf(withId(R.id.etEmail))).check(ViewAssertions.matches(not(hasErrorText(String.valueOf(R.string.Enter_Email)))));
